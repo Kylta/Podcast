@@ -8,6 +8,7 @@ target 'Podcast' do
   # Pods for Podcast
 
 	pod 'SwiftLint'
+	pod 'Alamofire', '~> 4.5'
 
   target 'PodcastTests' do
     inherit! :search_paths

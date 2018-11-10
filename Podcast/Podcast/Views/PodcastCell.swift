@@ -11,7 +11,7 @@ import UIKit
 class PodcastCell: GenericCell<Podcast> {
     override var item: Podcast! {
         didSet {
-            textLabel?.text = "\(item.name)\n\(item.artistName)"
+            textLabel?.text = "\(item.trackName)\n\(item.artistName)"
             textLabel?.numberOfLines = 0
             imageView?.image = UIImage(named: "appicon")
         }

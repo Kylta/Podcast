@@ -11,16 +11,15 @@ import Alamofire
 
 class PodcastsSearchController: GenericTableViewController<PodcastCell, Podcast>, UISearchBarDelegate {
 
-    var searchController = UISearchController(searchResultsController: nil)
+    let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        items = [
-            Podcast(name: "LetsBuildThatApp", artistName: "Brian Voong"),
-            Podcast(name: "Some podcast", artistName: "Some artists")
-        ]
+        setupSearchBar()
+    }
 
+    func setupSearchBar() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.dimsBackgroundDuringPresentation = false
@@ -28,16 +27,24 @@ class PodcastsSearchController: GenericTableViewController<PodcastCell, Podcast>
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        Alamofire.request(url).response { (dataResponse) in
+        let url = "https://itunes.apple.com/search"
+        let parameters = ["term": searchText, "media": "podcast"]
+
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).response { (dataResponse) in
             if let err = dataResponse.error {
                 print("Failed to contact itunes API:", err)
                 return
             }
 
             guard let data = dataResponse.data else { return }
-            guard let dummyString = String(data: data, encoding: .utf8) else { return }
-            print(dummyString)
+
+            do {
+                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+                self.items = searchResult.results
+                self.tableView.reloadData()
+            } catch let decodeErr {
+                print("Failed to decode Search Result:", decodeErr)
+            }
         }
     }
 }

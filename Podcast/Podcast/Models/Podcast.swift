@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct Podcast {
-    var name: String
+struct SearchResult: Decodable {
+    var resultCount: Int
+    var results: [Podcast]
+}
+
+struct Podcast: Decodable {
+    var trackName: String
     var artistName: String
 }

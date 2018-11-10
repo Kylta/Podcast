@@ -7,19 +7,19 @@
 //
 
 import UIKit
+import Alamofire
 
 class PodcastsSearchController: GenericTableViewController<PodcastCell, Podcast>, UISearchBarDelegate {
 
-    var searchController = UISearchController(searchResultsController: nil)
+    let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupSearchBar()
+    }
 
-        items = [
-            Podcast(name: "LetsBuildThatApp", artistName: "Brian Voong"),
-            Podcast(name: "Some podcast", artistName: "Some artists")
-        ]
-
+    func setupSearchBar() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.dimsBackgroundDuringPresentation = false
@@ -27,6 +27,9 @@ class PodcastsSearchController: GenericTableViewController<PodcastCell, Podcast>
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
+            self.items = podcasts
+            self.tableView.reloadData()
+        }
     }
 }

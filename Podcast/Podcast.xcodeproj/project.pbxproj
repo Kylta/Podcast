@@ -19,6 +19,7 @@
 		46E034D0219703B6005C7350 /* PodcastsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E034CF219703B6005C7350 /* PodcastsSearchController.swift */; };
 		46E034D42197051B005C7350 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E034D32197051B005C7350 /* PodcastCell.swift */; };
 		46E034D62197053A005C7350 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E034D52197053A005C7350 /* Podcast.swift */; };
+		46E034D921972374005C7350 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E034D821972374005C7350 /* APIService.swift */; };
 		98705B992103F95F9180F161 /* Pods_PodcastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69C7E7101BF6E547932FF8 /* Pods_PodcastTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		46E034CF219703B6005C7350 /* PodcastsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchController.swift; sourceTree = "<group>"; };
 		46E034D32197051B005C7350 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		46E034D52197053A005C7350 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		46E034D821972374005C7350 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		4D8CDFAC8424DB58C372E140 /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
 		577EB17154DCF4CC2BB4F43C /* Pods-PodcastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastTests/Pods-PodcastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		88BD42E50B95DB8A17554DFF /* Pods-PodcastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastUITests/Pods-PodcastUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				46E0349C2196FD53005C7350 /* MainTabBarController.swift */,
+				46E034D721972367005C7350 /* API */,
 				46E034D221970508005C7350 /* Models */,
 				46E034D1219704FA005C7350 /* Views */,
 				46E034CE219703A9005C7350 /* Controllers */,
@@ -201,6 +204,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		46E034D721972367005C7350 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				46E034D821972374005C7350 /* APIService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		DF036C55991F66F98A7E5728 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +237,7 @@
 				46E034942196FD53005C7350 /* Frameworks */,
 				46E034952196FD53005C7350 /* Resources */,
 				46E034C82196FE70005C7350 /* Swiftlint */,
+				03AB79FB76EEE5E35B25D8BC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -344,6 +356,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		03AB79FB76EEE5E35B25D8BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		216F240DA0154C63D826B0CB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46E034D0219703B6005C7350 /* PodcastsSearchController.swift in Sources */,
+				46E034D921972374005C7350 /* APIService.swift in Sources */,
 				46E0349D2196FD53005C7350 /* MainTabBarController.swift in Sources */,
 				46E034D62197053A005C7350 /* Podcast.swift in Sources */,
 				46E034D42197051B005C7350 /* PodcastCell.swift in Sources */,

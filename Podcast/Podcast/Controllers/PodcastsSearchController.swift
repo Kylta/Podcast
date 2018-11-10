@@ -34,4 +34,23 @@ class PodcastsSearchController: GenericTableViewController<PodcastCell, Podcast>
             self.tableView.reloadData()
         }
     }
+
+    // MARK: - TableView
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerLabel = UILabel()
+        headerLabel.text = "No results, please enter a search query."
+        headerLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        headerLabel.textColor = .purple
+        headerLabel.textAlignment = .center
+
+        if !searchController.searchBar.text!.isEmpty {
+            headerLabel.text = "You're almost there, keep typing..."
+        }
+        return headerLabel
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return items.isEmpty ? 250 : 0
+    }
 }

@@ -14,8 +14,10 @@ class PodcastsSearchController: GenericTableViewController<PodcastCell, Podcast>
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
+        nib = "PodcastCell"
         super.viewDidLoad()
-        
+
+        tableView.rowHeight = 132
         setupSearchBar()
     }
 

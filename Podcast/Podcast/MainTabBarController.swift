@@ -18,7 +18,7 @@ class MainTabBarController: UITabBarController {
         tabBar.tintColor = .purple
 
         viewControllers = [
-            generateNavigationController(for: UIViewController(), title: "Search", image: UIImage(named: "search")!),
+            generateNavigationController(for: PodcastsSearchController(), title: "Search", image: UIImage(named: "search")!),
             generateNavigationController(for: UIViewController(), title: "Favorites", image: UIImage(named: "favorites")!),
             generateNavigationController(for: UIViewController(), title: "Downloads", image: UIImage(named: "downloads")!)
         ]

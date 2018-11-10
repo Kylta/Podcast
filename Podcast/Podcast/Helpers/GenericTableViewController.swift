@@ -20,19 +20,27 @@ class GenericCell<U>: UITableViewCell {
     func setupViews() {}
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
 }
 
 class GenericTableViewController<T: GenericCell<U>, U>: UITableViewController {
 
     var items = [U]()
+    var nib: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.tableFooterView = UIView()
+
         let reuseIdentifier = NSStringFromClass(T.self)
-        tableView.register(T.self, forCellReuseIdentifier: reuseIdentifier)
+        if let nib = nib {
+            let nib = UINib(nibName: nib, bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: reuseIdentifier)
+        } else {
+            tableView.register(T.self, forCellReuseIdentifier: reuseIdentifier)
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

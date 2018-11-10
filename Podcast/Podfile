@@ -9,6 +9,7 @@ target 'Podcast' do
 
 	pod 'SwiftLint'
 	pod 'Alamofire', '~> 4.5'
+	pod 'SDWebImage', '~> 4.0'
 
   target 'PodcastTests' do
     inherit! :search_paths

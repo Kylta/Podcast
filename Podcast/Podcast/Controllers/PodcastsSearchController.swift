@@ -15,7 +15,7 @@ class PodcastsSearchController: GenericTableViewController<PodcastCell, Podcast>
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupSearchBar()
     }
 
@@ -27,24 +27,9 @@ class PodcastsSearchController: GenericTableViewController<PodcastCell, Podcast>
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let url = "https://itunes.apple.com/search"
-        let parameters = ["term": searchText, "media": "podcast"]
-
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).response { (dataResponse) in
-            if let err = dataResponse.error {
-                print("Failed to contact itunes API:", err)
-                return
-            }
-
-            guard let data = dataResponse.data else { return }
-
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                self.items = searchResult.results
-                self.tableView.reloadData()
-            } catch let decodeErr {
-                print("Failed to decode Search Result:", decodeErr)
-            }
+        APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
+            self.items = podcasts
+            self.tableView.reloadData()
         }
     }
 }

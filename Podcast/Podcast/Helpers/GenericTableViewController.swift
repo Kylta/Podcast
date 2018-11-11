@@ -32,8 +32,6 @@ class GenericTableViewController<T: GenericCell<U>, U>: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.tableFooterView = UIView()
-
         let reuseIdentifier = NSStringFromClass(T.self)
         if let nib = nib {
             let nib = UINib(nibName: nib, bundle: nil)
@@ -41,6 +39,8 @@ class GenericTableViewController<T: GenericCell<U>, U>: UITableViewController {
         } else {
             tableView.register(T.self, forCellReuseIdentifier: reuseIdentifier)
         }
+
+        tableView.tableFooterView = UIView()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
